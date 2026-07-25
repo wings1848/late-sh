@@ -43,6 +43,57 @@ git push origin custom feat/i18n-framework --force
 - `CLAUDE.md` — this file, project instructions for Claude Code (fork-specific)
 - `CONTEXT.md` — upstream LLM context, architecture, invariants (never modified)
 
+## Fork purpose
+
+This fork adds Simplified Chinese (zh-Hans) TUI shell support to late.sh.
+Target audience: Chinese-speaking users who want a localized terminal experience.
+Upstream PRs ([#464](https://github.com/mpiorowski/late-sh/pull/464),
+[#465](https://github.com/mpiorowski/late-sh/pull/465)) are pending;
+`custom` is the primary way to use late.sh in Chinese.
+
+To switch language: `Ctrl+O` → Display → Language → 中文(简体).
+
+## Known gaps
+
+These affect Chinese users and should be addressed before the fork is
+"complete". Ordered by user impact.
+
+### High priority
+
+- **README-zh.md fork awareness** — still references `mpiorowski/late-sh`
+  clone URLs; does not clarify that `ssh late.sh` connects to the
+  *official* server, which does not have Chinese i18n. Should explain
+  the fork's purpose and link to the Docker image
+  (`ghcr.io/wings1848/late-sh/late-ssh:custom`).
+
+- **SSH auth banner (AUTH_SETUP_BANNER)** — `late-ssh/src/ssh.rs:47-53`:
+  `"late.sh requires SSH public-key auth.\r\nNew here? Install the
+  companion CLI: ..."` — hardcoded English, shown on **every connection**
+  before auth. Should use `i18n::tr()`.
+
+- **SSH exit message (EXIT_MESSAGE)** — `late-ssh/src/ssh.rs:54`:
+  `"Stay late. Code safe. ✨"` — hardcoded English, shown on **every
+  disconnect**. Should use `i18n::tr()`.
+
+### Medium priority
+
+- **Chat section untranslated** — ~515 keys in `[chat]` section of
+  `zh-hans.toml` are missing. The chat area (composer hints, message
+  actions, room labels, polls, feeds, showcase) is where users spend
+  most of their time. Falls back to English.
+
+- **GitHub repo description** — currently `"A cozy terminal clubhouse
+  for developers..."` — no mention of Chinese support.
+
+- **Splash tips** — `late-ssh/assets/splash_tips/*.json` — 35 + 15
+  English tips shown at login. Only `common.splash_hint` uses `tr()`.
+
+### Low priority
+
+- **state.rs hardcoded banners** — `late-ssh/src/app/state.rs`: 3 admin
+  banners (`"Artboard editing is disabled..."`, `"Permissions updated..."`)
+  are hardcoded English; only visible to admins/mods.
+
 ## i18n / Translation
 
 This project supports English (en, default) and Simplified Chinese (zh-hans)
