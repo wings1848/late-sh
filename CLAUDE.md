@@ -36,6 +36,13 @@ git merge feat/i18n-framework
 git push origin custom feat/i18n-framework --force
 ```
 
+## Documentation
+
+- `README.md` — upstream English README (never modified; must stay identical to upstream)
+- `README-zh.md` — Simplified Chinese translation of README.md (fork-specific)
+- `CLAUDE.md` — this file, project instructions for Claude Code (fork-specific)
+- `CONTEXT.md` — upstream LLM context, architecture, invariants (never modified)
+
 ## i18n / Translation
 
 This project supports English (en, default) and Simplified Chinese (zh-hans)

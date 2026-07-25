@@ -1,5 +1,7 @@
 # late.sh
 
+> 本文是 [README.md](README.md) 的简体中文翻译。English version: [README.md](README.md)
+
 一个舒适的终端俱乐部，面向计算机爱好者。聊天、音乐、游戏、艺术、编程和技术新闻。用任何 SSH 客户端即可连接！
 
 ```bash
@@ -155,4 +157,3 @@ git commit -s
 - [CONTRIBUTING.md](CONTRIBUTING.md) — 工作流程、测试规则、模块模式和 AI 辅助开发技巧。
 - [THEME.md](THEME.md) — 如何通过 PR 贡献新的内置 SSH 主题。
 - [late-cli/README.md](late-cli/README.md) — CLI 特定用法和行为。
-- [README-zh.md](README-zh.md) — 本文件，简体中文版 README。
