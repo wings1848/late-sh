@@ -1,0 +1,48 @@
+name: docker-ssh
+
+on:
+  push:
+    branches: [custom, feat/i18n]
+    paths:
+      - "late-ssh/**"
+      - "late-core/**"
+      - "late-brogue/**"
+      - "late-cli/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "Dockerfile"
+      - "docker/doors/**"
+      - ".github/workflows/docker-ssh.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  # Sanitize the branch name for use as a Docker tag:
+  # Docker tags only allow [a-zA-Z0-9_.-], so / in feat/i18n becomes -.
+  tag:
+    name: resolve image tag
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.tag.outputs.image_tag }}
+    steps:
+      - id: tag
+        run: |
+          raw="${{ github.ref_name }}"
+          safe="${raw//\//-}"
+          echo "image_tag=${safe}" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: build and push late-ssh image
+    needs: tag
+    uses: ./.github/workflows/build.yml
+    with:
+      registry: ghcr.io
+      image_name: late-ssh
+      image_tag: ${{ needs.tag.outputs.image_tag }}
+      context: .
+      dockerfile: ./Dockerfile
+      docker_target: runtime-ssh
+    secrets: inherit
