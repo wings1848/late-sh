@@ -1,5 +1,7 @@
 # late.sh
 
+> [中文版](README-zh.md)
+
 A cozy command-line clubhouse for computer people. Chat, music, games, art, coding, and tech news. Connect with any SSH client!
 
 ```bash
