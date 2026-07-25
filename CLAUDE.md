@@ -38,7 +38,7 @@ git push origin custom feat/i18n-framework --force
 
 ## Documentation
 
-- `README.md` — upstream English README (never modified; must stay identical to upstream)
+- `README.md` — upstream English README (one fork addition: `[中文版](README-zh.md)` link at top)
 - `README-zh.md` — Simplified Chinese translation of README.md (fork-specific)
 - `CLAUDE.md` — this file, project instructions for Claude Code (fork-specific)
 - `CONTEXT.md` — upstream LLM context, architecture, invariants (never modified)
