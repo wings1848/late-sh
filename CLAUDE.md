@@ -29,11 +29,11 @@ git fetch upstream main
 git checkout main
 git merge upstream/main --ff-only
 git push origin main
-git checkout feat/i18n      # for each active feature branch
+git checkout feat/i18n-framework      # for each active feature branch
 git rebase main
 git checkout custom
-git merge feat/i18n
-git push origin custom feat/i18n --force
+git merge feat/i18n-framework
+git push origin custom feat/i18n-framework --force
 ```
 
 ## i18n / Translation
